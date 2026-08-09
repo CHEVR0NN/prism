@@ -1,0 +1,9 @@
+.font-pairing-card__heading {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.font-pairing-card__body {
+  color: var(--ink-soft);
+  margin-bottom: 1rem;
+}

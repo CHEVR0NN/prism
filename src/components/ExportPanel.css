@@ -1,0 +1,13 @@
+.export-panel {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.export-panel__stamp {
+  font-family: var(--font-display);
+  color: var(--accent);
+  transform: rotate(-4deg);
+  border: 2px solid var(--accent);
+  padding: 0.1rem 0.6rem;
+}

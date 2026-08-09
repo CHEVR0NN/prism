@@ -1,0 +1,57 @@
+.upload-zone {
+  position: relative;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.upload-zone--dragging {
+  background: var(--paper-dark);
+}
+
+.upload-zone__tape {
+  position: absolute;
+  top: -12px;
+  width: 60px;
+  height: 24px;
+  background-color: rgba(230, 220, 190, 0.7);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.5) 4px,
+    rgba(255, 255, 255, 0.25) 4px,
+    rgba(255, 255, 255, 0.25) 8px
+  );
+  opacity: 0.8;
+}
+
+.upload-zone__tape--left {
+  left: 20px;
+  transform: rotate(-6deg);
+}
+
+.upload-zone__tape--right {
+  right: 20px;
+  transform: rotate(4deg);
+}
+
+.upload-zone__text {
+  font-family: var(--font-body);
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.upload-zone__error {
+  color: var(--accent);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.upload-zone__input {
+  display: none;
+}

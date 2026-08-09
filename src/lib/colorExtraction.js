@@ -1,20 +1,14 @@
-import ColorThief from 'colorthief';
-
-const colorThief = new ColorThief();
-
-function rgbToHex([r, g, b]) {
-  return `#${[r, g, b].map((c) => c.toString(16).padStart(2, '0')).join('')}`;
-}
+import { getPalette } from 'colorthief';
 
 export function extractPalette(imageFile, count) {
   return new Promise((resolve, reject) => {
     const img = new Image();
     const objectUrl = URL.createObjectURL(imageFile);
 
-    img.onload = () => {
+    img.onload = async () => {
       try {
-        const palette = colorThief.getPalette(img, count);
-        resolve(palette.map(rgbToHex));
+        const palette = await getPalette(img, { colorCount: count });
+        resolve(palette.map((color) => color.hex()));
       } catch (error) {
         reject(error);
       } finally {
