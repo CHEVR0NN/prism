@@ -1,0 +1,22 @@
+.wobbly-card {
+  position: relative;
+  padding: 1.5rem;
+}
+
+.wobbly-card__border {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.wobbly-card__path {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 2;
+  filter: drop-shadow(3px 3px 0 var(--shadow-color));
+}
+
+.wobbly-card__content {
+  position: relative;
+  z-index: 1;
+}
