@@ -44,7 +44,7 @@ export default function App() {
       setTriedPairingIds([chosen.id]);
       setStatus('done');
     } catch {
-      setError('Could not read that image — try a different file.');
+      setError('Could not read that image. Try a different file.');
       setStatus('error');
     }
   }, []);
@@ -86,6 +86,7 @@ export default function App() {
       <header className="app__header">
         <h1 className="app__title">Prism</h1>
         <DoodleUnderline className="app__title-underline" />
+        <p className="app__tagline">Turn any image into a color palette and font pairing.</p>
       </header>
       <main id="main-content" className={`app__body ${status === 'idle' ? 'app__body--empty' : ''}`}>
         <div className="app__upload-pane">

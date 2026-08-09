@@ -12,7 +12,7 @@ export default function UploadZone({ onImageSelected, compact = false }) {
       const file = files?.[0];
       if (!file) return;
       if (!file.type.startsWith('image/')) {
-        setError("That's not an image file — try a jpg, png, or webp.");
+        setError("That's not an image file. Try a jpg, png, or webp.");
         return;
       }
       setError('');

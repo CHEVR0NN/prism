@@ -9,7 +9,7 @@ export default function FontPairingCard({ pairing, onShuffle, rationale }) {
     <WobblyCard seed={`font-${pairing.id}`} className="font-pairing-card">
       {rationale && (
         <p className="font-pairing-card__rationale">
-          Your palette reads {rationale} — paired with {pairing.display.name} and {pairing.body.name}.
+          Your palette reads {rationale}, paired with {pairing.display.name} and {pairing.body.name}.
         </p>
       )}
       <div className="font-pairing-card__specimens">
