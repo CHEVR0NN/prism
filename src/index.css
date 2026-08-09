@@ -33,3 +33,21 @@ h3 {
   font-weight: 600;
   margin: 0;
 }
+
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 0.5rem;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  font-family: var(--font-body);
+  text-decoration: none;
+  transition: top 150ms ease;
+}
+
+.skip-link:focus {
+  top: 0.5rem;
+}

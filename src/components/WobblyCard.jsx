@@ -7,7 +7,7 @@ export default function WobblyCard({ seed, className = '', children }) {
   return (
     <div ref={ref} className={`wobbly-card ${className}`}>
       {size.width > 0 && (
-        <svg className="wobbly-card__border" width={size.width} height={size.height}>
+        <svg className="wobbly-card__border" width={size.width} height={size.height} aria-hidden="true">
           <path d={path} className="wobbly-card__path" />
         </svg>
       )}

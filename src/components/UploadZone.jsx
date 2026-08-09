@@ -25,6 +25,9 @@ export default function UploadZone({ onImageSelected, compact = false }) {
     <WobblyCard seed="upload-zone" className={`upload-zone-card ${compact ? 'upload-zone-card--compact' : ''}`}>
       <div
         className={`upload-zone ${compact ? 'upload-zone--compact' : ''} ${isDragging ? 'upload-zone--dragging' : ''}`}
+        role="button"
+        tabIndex={0}
+        aria-label={compact ? 'Drop a new image, or press Enter to replace' : 'Drop an image here, or press Enter to choose one'}
         onDragOver={(event) => {
           event.preventDefault();
           setIsDragging(true);
@@ -36,6 +39,12 @@ export default function UploadZone({ onImageSelected, compact = false }) {
           handleFiles(event.dataTransfer.files);
         }}
         onClick={() => inputRef.current?.click()}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            inputRef.current?.click();
+          }
+        }}
       >
         {!compact && (
           <>

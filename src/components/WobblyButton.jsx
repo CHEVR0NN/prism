@@ -7,7 +7,7 @@ export default function WobblyButton({ seed, className = '', children, ...props 
   return (
     <button ref={ref} type="button" className={`wobbly-button ${className}`} {...props}>
       {size.width > 0 && (
-        <svg className="wobbly-button__border" width={size.width} height={size.height}>
+        <svg className="wobbly-button__border" width={size.width} height={size.height} aria-hidden="true">
           <path d={path} className="wobbly-button__path" />
         </svg>
       )}

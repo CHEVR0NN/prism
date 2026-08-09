@@ -14,6 +14,7 @@ export default function PaintChip({ hex, index, onCopy }) {
       className="paint-chip"
       style={{ backgroundColor: hex, clipPath, transform: `rotate(${rotation.toFixed(2)}deg)` }}
       onClick={() => onCopy(hex)}
+      aria-label={`Copy hex code ${hex}`}
     >
       <span className="paint-chip__hex">{hex}</span>
     </button>

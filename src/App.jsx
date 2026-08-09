@@ -1,10 +1,9 @@
-import { useCallback, useState } from 'react';
+import { lazy, Suspense, useCallback, useState } from 'react';
 import NoiseOverlay from './components/NoiseOverlay';
 import UploadZone from './components/UploadZone';
 import SwatchCountSlider from './components/SwatchCountSlider';
 import PaletteRow from './components/PaletteRow';
-import FontPairingCard from './components/FontPairingCard';
-import ExportPanel from './components/ExportPanel';
+import ResultsSkeleton from './components/Skeleton';
 import { DoodleUnderline } from './components/Doodles';
 import { extractPalette } from './lib/colorExtraction';
 import { averagePaletteHsl } from './lib/colorAnalysis';
@@ -12,6 +11,9 @@ import { pickPairing } from './lib/fontPairingScorer';
 import { fontPairings } from './lib/fontPairings';
 import { useGoogleFontLink } from './hooks/useGoogleFontLink';
 import './App.css';
+
+const FontPairingCard = lazy(() => import('./components/FontPairingCard'));
+const ExportPanel = lazy(() => import('./components/ExportPanel'));
 
 export default function App() {
   const [file, setFile] = useState(null);
@@ -22,6 +24,7 @@ export default function App() {
   const [triedPairingIds, setTriedPairingIds] = useState([]);
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState('');
+  const [imageDims, setImageDims] = useState(null);
 
   useGoogleFontLink(pairing);
 
@@ -45,6 +48,7 @@ export default function App() {
   const handleImageSelected = useCallback(
     (imageFile) => {
       setFile(imageFile);
+      setImageDims(null);
       setImageUrl((prev) => {
         if (prev) URL.revokeObjectURL(prev);
         return URL.createObjectURL(imageFile);
@@ -80,21 +84,41 @@ export default function App() {
         <h1 className="app__title">Prism</h1>
         <DoodleUnderline className="app__title-underline" />
       </header>
-      <div className={`app__body ${status === 'idle' ? 'app__body--empty' : ''}`}>
+      <main id="main-content" className={`app__body ${status === 'idle' ? 'app__body--empty' : ''}`}>
         <div className="app__upload-pane">
           {imageUrl && (
             <div className="app__image-showcase">
-              <img className="app__preview-image" src={imageUrl} alt="Uploaded" />
+              <img
+                className="app__preview-image"
+                src={imageUrl}
+                alt="Uploaded"
+                width={imageDims?.width}
+                height={imageDims?.height}
+                decoding="async"
+                onLoad={(event) =>
+                  setImageDims({
+                    width: event.currentTarget.naturalWidth,
+                    height: event.currentTarget.naturalHeight,
+                  })
+                }
+              />
             </div>
           )}
           <UploadZone onImageSelected={handleImageSelected} compact={Boolean(imageUrl)} />
         </div>
         {status !== 'idle' && (
           <div className="app__results-pane">
-            {status === 'loading' && <p className="app__status">Reading colors…</p>}
-            {status === 'error' && <p className="app__status app__status--error">{error}</p>}
+            <div className="app__status" role="status" aria-live="polite">
+              {status === 'loading' && 'Reading colors…'}
+            </div>
+            {status === 'error' && (
+              <p className="app__status app__status--error" role="alert">
+                {error}
+              </p>
+            )}
+            {status === 'loading' && <ResultsSkeleton />}
             {colors.length > 0 && (
-              <>
+              <Suspense fallback={<ResultsSkeleton />}>
                 <div className="app__section">
                   <SwatchCountSlider value={swatchCount} onChange={handleSwatchCountChange} />
                   <PaletteRow colors={colors} onCopyHex={handleCopyHex} />
@@ -104,11 +128,11 @@ export default function App() {
                   <FontPairingCard pairing={pairing} onShuffle={handleShuffle} />
                   <ExportPanel colors={colors} pairing={pairing} variant="css" />
                 </div>
-              </>
+              </Suspense>
             )}
           </div>
         )}
-      </div>
+      </main>
     </div>
   );
 }

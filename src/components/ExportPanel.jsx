@@ -29,7 +29,11 @@ export default function ExportPanel({ colors, pairing, variant }) {
         <WobblyButton seed="export-copy" onClick={handleCopy}>
           Copy hex codes
         </WobblyButton>
-        {feedback && <span className="export-panel__stamp">Copied!</span>}
+        {feedback && (
+          <span className="export-panel__stamp" role="status">
+            Copied!
+          </span>
+        )}
       </div>
     );
   }

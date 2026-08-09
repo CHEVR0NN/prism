@@ -4,15 +4,70 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Prism — image to palette & type</title>
+    <meta
+      name="description"
+      content="Prism turns any image into a matching color palette and font pairing, ready to copy as hex codes or download as CSS."
+    />
+    <meta name="theme-color" content="#f4efe4" />
+    <link rel="canonical" href="https://prism-gules-beta.vercel.app/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Prism — image to palette & type" />
+    <meta
+      property="og:description"
+      content="Prism turns any image into a matching color palette and font pairing, ready to copy as hex codes or download as CSS."
+    />
+    <meta property="og:url" content="https://prism-gules-beta.vercel.app/" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Prism — image to palette & type" />
+    <meta
+      name="twitter:description"
+      content="Prism turns any image into a matching color palette and font pairing, ready to copy as hex codes or download as CSS."
+    />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;600&display=swap"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+    <style>
+      #initial-loader {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f4efe4;
+      }
+      #initial-loader__spinner {
+        width: 42px;
+        height: 42px;
+        border: 4px solid #e9e1d0;
+        border-top-color: #b5482f;
+        border-radius: 50%;
+        animation: initial-loader-spin 0.8s linear infinite;
+      }
+      @keyframes initial-loader-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <div id="root">
+      <div id="initial-loader" role="status" aria-label="Loading Prism">
+        <div id="initial-loader__spinner"></div>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
