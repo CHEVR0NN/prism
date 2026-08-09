@@ -45,7 +45,10 @@ export default function App() {
   const handleImageSelected = useCallback(
     (imageFile) => {
       setFile(imageFile);
-      setImageUrl(URL.createObjectURL(imageFile));
+      setImageUrl((prev) => {
+        if (prev) URL.revokeObjectURL(prev);
+        return URL.createObjectURL(imageFile);
+      });
       runExtraction(imageFile, swatchCount);
     },
     [runExtraction, swatchCount]
