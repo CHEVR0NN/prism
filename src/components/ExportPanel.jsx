@@ -3,8 +3,8 @@ import { buildCssExport } from '../lib/cssExport';
 import WobblyButton from './WobblyButton';
 import './ExportPanel.css';
 
-export default function ExportPanel({ colors, pairing }) {
-  const [copied, setCopied] = useState(false);
+export default function ExportPanel({ colors, pairing, variant }) {
+  const [feedback, setFeedback] = useState(false);
 
   const handleDownload = () => {
     const css = buildCssExport(colors, pairing);
@@ -19,19 +19,26 @@ export default function ExportPanel({ colors, pairing }) {
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(colors.join(', '));
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+    setFeedback(true);
+    setTimeout(() => setFeedback(false), 1500);
   };
+
+  if (variant === 'hex') {
+    return (
+      <div className="export-panel">
+        <WobblyButton seed="export-copy" onClick={handleCopy}>
+          Copy hex codes
+        </WobblyButton>
+        {feedback && <span className="export-panel__stamp">Copied!</span>}
+      </div>
+    );
+  }
 
   return (
     <div className="export-panel">
       <WobblyButton seed="export-download" onClick={handleDownload}>
         Download CSS
       </WobblyButton>
-      <WobblyButton seed="export-copy" onClick={handleCopy}>
-        Copy hex codes
-      </WobblyButton>
-      {copied && <span className="export-panel__stamp">Copied!</span>}
     </div>
   );
 }

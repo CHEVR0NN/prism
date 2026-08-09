@@ -95,10 +95,15 @@ export default function App() {
             {status === 'error' && <p className="app__status app__status--error">{error}</p>}
             {colors.length > 0 && (
               <>
-                <SwatchCountSlider value={swatchCount} onChange={handleSwatchCountChange} />
-                <PaletteRow colors={colors} onCopyHex={handleCopyHex} />
-                <FontPairingCard pairing={pairing} onShuffle={handleShuffle} />
-                <ExportPanel colors={colors} pairing={pairing} />
+                <div className="app__section">
+                  <SwatchCountSlider value={swatchCount} onChange={handleSwatchCountChange} />
+                  <PaletteRow colors={colors} onCopyHex={handleCopyHex} />
+                  <ExportPanel colors={colors} pairing={pairing} variant="hex" />
+                </div>
+                <div className="app__section">
+                  <FontPairingCard pairing={pairing} onShuffle={handleShuffle} />
+                  <ExportPanel colors={colors} pairing={pairing} variant="css" />
+                </div>
               </>
             )}
           </div>
