@@ -1,9 +1,16 @@
+.wobbly-card.font-pairing-card {
+  padding: 2rem 2.25rem;
+}
+
 .font-pairing-card__heading {
-  font-size: 1.75rem;
-  margin-bottom: 0.5rem;
+  font-size: 3rem;
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
 }
 
 .font-pairing-card__body {
+  font-size: 1.1rem;
+  line-height: 1.6;
   color: var(--ink-soft);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
