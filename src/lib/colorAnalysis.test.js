@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { averagePaletteHsl } from './colorAnalysis';
+import { averagePaletteHsl, describeMood } from './colorAnalysis';
 
 describe('averagePaletteHsl', () => {
   it('averages lightness and saturation across the palette', () => {
@@ -22,5 +22,19 @@ describe('averagePaletteHsl', () => {
   it('returns zeros for an empty palette', () => {
     const result = averagePaletteHsl([]);
     expect(result).toEqual({ h: 0, s: 0, l: 0 });
+  });
+});
+
+describe('describeMood', () => {
+  it('describes a warm, rich, mid-light mood', () => {
+    expect(describeMood({ h: 30, s: 0.35, l: 0.55 })).toBe('warm, rich, balanced');
+  });
+
+  it('describes a cool, vibrant, airy mood', () => {
+    expect(describeMood({ h: 200, s: 0.7, l: 0.8 })).toBe('cool, vibrant, airy');
+  });
+
+  it('describes a moody dark neutral', () => {
+    expect(describeMood({ h: 0, s: 0.05, l: 0.2 })).toBe('warm, muted, moody');
   });
 });

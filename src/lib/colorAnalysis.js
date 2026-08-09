@@ -35,3 +35,10 @@ export function averagePaletteHsl(hexColors) {
 
   return { h, s: sSum / n, l: lSum / n };
 }
+
+export function describeMood(mood) {
+  const lightness = mood.l < 0.35 ? 'moody' : mood.l < 0.65 ? 'balanced' : 'airy';
+  const saturation = mood.s < 0.25 ? 'muted' : mood.s < 0.55 ? 'rich' : 'vibrant';
+  const hue = mood.h < 90 || mood.h >= 300 ? 'warm' : mood.h < 270 ? 'cool' : 'balanced';
+  return `${hue}, ${saturation}, ${lightness}`;
+}

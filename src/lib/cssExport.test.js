@@ -20,9 +20,9 @@ describe('buildCssExport', () => {
     expect(css).toContain("--font-body: 'Karla', sans-serif;");
   });
 
-  it('includes the Google Fonts URL for the pairing as a comment', () => {
+  it('includes a working @import for the pairing fonts, not just a comment', () => {
     const css = buildCssExport(['#ff0000'], pairing);
-    expect(css).toContain('https://fonts.googleapis.com/css2?');
+    expect(css).toContain("@import url('https://fonts.googleapis.com/css2?");
     expect(css).toContain('family=Fraunces');
     expect(css).toContain('family=Karla');
   });

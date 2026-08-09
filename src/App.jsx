@@ -6,7 +6,7 @@ import PaletteRow from './components/PaletteRow';
 import ResultsSkeleton from './components/Skeleton';
 import { DoodleUnderline } from './components/Doodles';
 import { extractPalette } from './lib/colorExtraction';
-import { averagePaletteHsl } from './lib/colorAnalysis';
+import { averagePaletteHsl, describeMood } from './lib/colorAnalysis';
 import { pickPairing } from './lib/fontPairingScorer';
 import { fontPairings } from './lib/fontPairings';
 import { useGoogleFontLink } from './hooks/useGoogleFontLink';
@@ -21,6 +21,7 @@ export default function App() {
   const [swatchCount, setSwatchCount] = useState(5);
   const [colors, setColors] = useState([]);
   const [pairing, setPairing] = useState(null);
+  const [moodVector, setMoodVector] = useState(null);
   const [triedPairingIds, setTriedPairingIds] = useState([]);
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState('');
@@ -31,11 +32,14 @@ export default function App() {
   const runExtraction = useCallback(async (imageFile, count) => {
     setStatus('loading');
     setError('');
+    setColors([]);
+    setPairing(null);
     try {
       const palette = await extractPalette(imageFile, count);
       setColors(palette);
-      const moodVector = averagePaletteHsl(palette);
-      const chosen = pickPairing(moodVector, fontPairings, []);
+      const vector = averagePaletteHsl(palette);
+      setMoodVector(vector);
+      const chosen = pickPairing(vector, fontPairings, []);
       setPairing(chosen);
       setTriedPairingIds([chosen.id]);
       setStatus('done');
@@ -67,11 +71,10 @@ export default function App() {
   );
 
   const handleShuffle = useCallback(() => {
-    const moodVector = averagePaletteHsl(colors);
     const next = pickPairing(moodVector, fontPairings, triedPairingIds);
     setPairing(next);
     setTriedPairingIds((prev) => [...prev, next.id]);
-  }, [colors, triedPairingIds]);
+  }, [moodVector, triedPairingIds]);
 
   const handleCopyHex = useCallback((hex) => {
     navigator.clipboard.writeText(hex);
@@ -125,7 +128,11 @@ export default function App() {
                   <ExportPanel colors={colors} pairing={pairing} variant="hex" />
                 </div>
                 <div className="app__section">
-                  <FontPairingCard pairing={pairing} onShuffle={handleShuffle} />
+                  <FontPairingCard
+                    pairing={pairing}
+                    onShuffle={handleShuffle}
+                    rationale={moodVector ? describeMood(moodVector) : ''}
+                  />
                   <ExportPanel colors={colors} pairing={pairing} variant="css" />
                 </div>
               </Suspense>
