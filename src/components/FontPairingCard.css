@@ -2,14 +2,38 @@
   padding: 2rem 2.25rem;
 }
 
-.font-pairing-card__heading {
-  font-size: 3rem;
-  line-height: 1.1;
-  margin-bottom: 0.75rem;
+.font-pairing-card__specimens {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dashed var(--ink-soft);
 }
 
-.font-pairing-card__body {
-  font-size: 1.1rem;
+.font-pairing-card__specimen-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.25rem;
+}
+
+.font-pairing-card__specimen-name {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.font-pairing-card__combo-heading {
+  font-size: 2.25rem;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.font-pairing-card__combo-body {
+  font-size: 1.05rem;
   line-height: 1.6;
   color: var(--ink-soft);
   margin-bottom: 1.5rem;
