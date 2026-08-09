@@ -23,6 +23,7 @@ export default function App() {
   const [pairing, setPairing] = useState(null);
   const [moodVector, setMoodVector] = useState(null);
   const [triedPairingIds, setTriedPairingIds] = useState([]);
+  const [selectedIndexes, setSelectedIndexes] = useState(new Set());
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState('');
   const [imageDims, setImageDims] = useState(null);
@@ -34,6 +35,7 @@ export default function App() {
     setError('');
     setColors([]);
     setPairing(null);
+    setSelectedIndexes(new Set());
     try {
       const palette = await extractPalette(imageFile, count);
       setColors(palette);
@@ -78,6 +80,15 @@ export default function App() {
 
   const handleCopyHex = useCallback((hex) => {
     navigator.clipboard.writeText(hex);
+  }, []);
+
+  const handleToggleSelect = useCallback((index) => {
+    setSelectedIndexes((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) next.delete(index);
+      else next.add(index);
+      return next;
+    });
   }, []);
 
   return (
@@ -125,8 +136,18 @@ export default function App() {
               <Suspense fallback={<ResultsSkeleton />}>
                 <div className="app__section">
                   <SwatchCountSlider value={swatchCount} onChange={handleSwatchCountChange} />
-                  <PaletteRow colors={colors} onCopyHex={handleCopyHex} />
-                  <ExportPanel colors={colors} pairing={pairing} variant="hex" />
+                  <PaletteRow
+                    colors={colors}
+                    onCopyHex={handleCopyHex}
+                    selectedIndexes={selectedIndexes}
+                    onToggleSelect={handleToggleSelect}
+                  />
+                  <ExportPanel
+                    colors={colors}
+                    pairing={pairing}
+                    variant="hex"
+                    selectedHexes={colors.filter((_, index) => selectedIndexes.has(index))}
+                  />
                 </div>
                 <div className="app__section">
                   <FontPairingCard
