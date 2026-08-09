@@ -1,7 +1,7 @@
 .paint-chip {
   position: relative;
-  width: 90px;
-  height: 110px;
+  width: 112px;
+  height: 138px;
   border: none;
   cursor: pointer;
   filter: drop-shadow(3px 3px 0 var(--shadow-color));

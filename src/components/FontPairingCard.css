@@ -1,12 +1,12 @@
 .wobbly-card.font-pairing-card {
-  padding: 2rem 2.25rem;
+  padding: 2.5rem 2.75rem;
 }
 
 .font-pairing-card__specimens {
   display: flex;
-  gap: 2rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
+  gap: 3rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.75rem;
   border-bottom: 1px dashed var(--ink-soft);
 }
 
@@ -27,14 +27,14 @@
 }
 
 .font-pairing-card__combo-heading {
-  font-size: 2.25rem;
+  font-size: 2.75rem;
   line-height: 1.1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .font-pairing-card__combo-body {
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   line-height: 1.6;
   color: var(--ink-soft);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
 }
