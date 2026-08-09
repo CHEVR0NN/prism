@@ -14,6 +14,19 @@
   background: var(--paper-dark);
 }
 
+.upload-zone--compact {
+  min-height: 0;
+  gap: 0;
+}
+
+.wobbly-card.upload-zone-card--compact {
+  padding: 0.6rem 1.25rem;
+}
+
+.upload-zone-card--compact .upload-zone__text {
+  font-size: 0.85rem;
+}
+
 .upload-zone__tape {
   position: absolute;
   top: -12px;

@@ -80,23 +80,29 @@ export default function App() {
         <h1 className="app__title">Prism</h1>
         <DoodleUnderline className="app__title-underline" />
       </header>
-      <div className="app__body">
+      <div className={`app__body ${status === 'idle' ? 'app__body--empty' : ''}`}>
         <div className="app__upload-pane">
-          <UploadZone onImageSelected={handleImageSelected} />
-          {imageUrl && <img className="app__preview-image" src={imageUrl} alt="Uploaded" />}
-        </div>
-        <div className="app__results-pane">
-          {status === 'loading' && <p className="app__status">Reading colors…</p>}
-          {status === 'error' && <p className="app__status app__status--error">{error}</p>}
-          {colors.length > 0 && (
-            <>
-              <SwatchCountSlider value={swatchCount} onChange={handleSwatchCountChange} />
-              <PaletteRow colors={colors} onCopyHex={handleCopyHex} />
-              <FontPairingCard pairing={pairing} onShuffle={handleShuffle} />
-              <ExportPanel colors={colors} pairing={pairing} />
-            </>
+          {imageUrl && (
+            <div className="app__image-showcase">
+              <img className="app__preview-image" src={imageUrl} alt="Uploaded" />
+            </div>
           )}
+          <UploadZone onImageSelected={handleImageSelected} compact={Boolean(imageUrl)} />
         </div>
+        {status !== 'idle' && (
+          <div className="app__results-pane">
+            {status === 'loading' && <p className="app__status">Reading colors…</p>}
+            {status === 'error' && <p className="app__status app__status--error">{error}</p>}
+            {colors.length > 0 && (
+              <>
+                <SwatchCountSlider value={swatchCount} onChange={handleSwatchCountChange} />
+                <PaletteRow colors={colors} onCopyHex={handleCopyHex} />
+                <FontPairingCard pairing={pairing} onShuffle={handleShuffle} />
+                <ExportPanel colors={colors} pairing={pairing} />
+              </>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

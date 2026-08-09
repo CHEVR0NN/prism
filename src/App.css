@@ -1,11 +1,13 @@
 .app {
   position: relative;
   min-height: 100vh;
-  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
 }
 
 .app__header {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .app__title {
@@ -20,27 +22,51 @@
 
 .app__body {
   display: flex;
-  gap: 2rem;
+  align-items: flex-start;
+  gap: 2.5rem;
+}
+
+.app__body--empty {
+  justify-content: center;
+  min-height: 55vh;
+}
+
+.app__body--empty .app__upload-pane {
+  flex: 0 1 560px;
+  max-width: 560px;
+}
+
+.app__body--empty .upload-zone {
+  min-height: 340px;
 }
 
 .app__upload-pane {
-  flex: 0 0 320px;
+  flex: 1 1 380px;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
 .app__results-pane {
-  flex: 1;
-  max-width: 640px;
+  flex: 1 1 480px;
+  max-width: 560px;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
+}
+
+.app__image-showcase {
+  transform: rotate(-1.2deg);
 }
 
 .app__preview-image {
   width: 100%;
+  max-height: 420px;
+  object-fit: cover;
   display: block;
+  border: 2px solid var(--ink);
+  filter: drop-shadow(4px 4px 0 var(--shadow-color));
 }
 
 .app__status {
@@ -57,7 +83,9 @@
     flex-direction: column;
   }
 
-  .app__upload-pane {
+  .app__upload-pane,
+  .app__results-pane {
     flex: none;
+    max-width: none;
   }
 }
