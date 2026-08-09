@@ -1,0 +1,35 @@
+:root {
+  --paper: #f4efe4;
+  --paper-dark: #e9e1d0;
+  --ink: #2b241d;
+  --ink-soft: #5c5346;
+  --accent: #b5482f;
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Karla', sans-serif;
+  --shadow-color: rgba(43, 36, 29, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin: 0;
+}
