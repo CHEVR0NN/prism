@@ -21,20 +21,20 @@
 }
 
 .font-pairing-card__specimen-name {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   line-height: 1.2;
   margin: 0;
 }
 
 .font-pairing-card__combo-heading {
-  font-size: 2.75rem;
-  line-height: 1.1;
-  margin-bottom: 0.75rem;
+  font-size: 2rem;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
 }
 
 .font-pairing-card__combo-body {
-  font-size: 1.15rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.55;
   color: var(--ink-soft);
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
 }
