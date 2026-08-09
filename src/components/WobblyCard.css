@@ -13,7 +13,7 @@
   fill: var(--paper);
   stroke: var(--ink);
   stroke-width: 2;
-  filter: drop-shadow(3px 3px 0 var(--shadow-color));
+  filter: drop-shadow(3px 3px 0 var(--shadow-color)) drop-shadow(0 10px 20px var(--shadow-ambient));
 }
 
 .wobbly-card__content {

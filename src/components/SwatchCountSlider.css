@@ -1,19 +1,19 @@
 .swatch-slider {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: var(--space-3);
   font-family: var(--font-body);
   color: var(--ink-soft);
 }
 
 .swatch-slider__tabs {
   display: flex;
-  gap: 0.4rem;
+  gap: var(--space-2);
 }
 
 .swatch-slider__tab {
-  width: 30px;
-  height: 30px;
+  width: 44px;
+  height: 44px;
   border: 2px solid var(--ink);
   background: var(--paper);
   font-family: var(--font-body);
@@ -23,11 +23,16 @@
   cursor: pointer;
   transform: rotate(var(--tab-rotation));
   filter: drop-shadow(2px 2px 0 var(--shadow-color));
-  transition: transform 300ms cubic-bezier(0.34, 1.2, 0.64, 1);
+  transition: transform 200ms cubic-bezier(0.34, 1.2, 0.64, 1), filter 200ms ease;
 }
 
 .swatch-slider__tab:hover {
   transform: rotate(var(--tab-rotation)) translate(-1px, -1px);
+}
+
+.swatch-slider__tab:active {
+  transform: rotate(var(--tab-rotation)) translate(0, 1px);
+  filter: drop-shadow(1px 1px 0 var(--shadow-color));
 }
 
 .swatch-slider__tab--active {

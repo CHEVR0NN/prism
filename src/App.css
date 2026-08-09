@@ -3,15 +3,16 @@
   min-height: 100vh;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 3rem 2.5rem;
+  padding: var(--space-12) var(--space-10);
 }
 
 .app__header {
-  margin-bottom: 2.5rem;
+  margin-bottom: var(--space-10);
 }
 
 .app__title {
   font-size: 2.5rem;
+  letter-spacing: -0.02em;
 }
 
 .app__title-underline {
@@ -21,7 +22,7 @@
 }
 
 .app__tagline {
-  margin: 0.75rem 0 0;
+  margin: var(--space-3) 0 0;
   color: var(--ink-soft);
   font-size: 1.05rem;
 }
@@ -29,7 +30,7 @@
 .app__body {
   display: flex;
   align-items: flex-start;
-  gap: 3.5rem;
+  gap: var(--space-14);
 }
 
 .app__body--empty {
@@ -51,7 +52,7 @@
   max-width: 500px;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: var(--space-5);
 }
 
 .app__results-pane {
@@ -59,7 +60,7 @@
   max-width: 760px;
   display: flex;
   flex-direction: column;
-  gap: 2.25rem;
+  gap: var(--space-9);
 }
 
 .app__image-showcase {
@@ -78,7 +79,7 @@
 .app__section {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: var(--space-4);
 }
 
 .app__status {

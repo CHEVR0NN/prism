@@ -36,7 +36,7 @@ export default function FontPairingCard({ pairing, onShuffle, rationale }) {
         </p>
       </div>
 
-      <WobblyButton seed={`shuffle-${pairing.id}`} onClick={onShuffle}>
+      <WobblyButton seed={`shuffle-${pairing.id}`} className="wobbly-button--primary" onClick={onShuffle}>
         Shuffle pairing
       </WobblyButton>
     </WobblyCard>
