@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import WobblyCard from './WobblyCard';
 import './UploadZone.css';
 
@@ -20,6 +20,19 @@ export default function UploadZone({ onImageSelected, compact = false }) {
     },
     [onImageSelected]
   );
+
+  useEffect(() => {
+    const handlePaste = (event) => {
+      const items = event.clipboardData?.items;
+      if (!items) return;
+      const imageItem = Array.from(items).find((item) => item.type.startsWith('image/'));
+      if (!imageItem) return;
+      const file = imageItem.getAsFile();
+      if (file) handleFiles([file]);
+    };
+    window.addEventListener('paste', handlePaste);
+    return () => window.removeEventListener('paste', handlePaste);
+  }, [handleFiles]);
 
   return (
     <WobblyCard seed="upload-zone" className={`upload-zone-card ${compact ? 'upload-zone-card--compact' : ''}`}>
