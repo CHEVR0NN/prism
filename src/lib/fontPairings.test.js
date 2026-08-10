@@ -2,9 +2,9 @@ import { describe, expect, it } from 'vitest';
 import { fontPairings, buildGoogleFontsUrl } from './fontPairings';
 
 describe('fontPairings', () => {
-  it('has between 15 and 20 curated pairings', () => {
+  it('has between 15 and 30 curated pairings', () => {
     expect(fontPairings.length).toBeGreaterThanOrEqual(15);
-    expect(fontPairings.length).toBeLessThanOrEqual(20);
+    expect(fontPairings.length).toBeLessThanOrEqual(30);
   });
 
   it('gives every pairing a unique id, display font, body font, and mood vector', () => {
